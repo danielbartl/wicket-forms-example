@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:wicket="http://wicket.apache.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-    <form class="p-6" action="/save" method="post">
+    <form wicket:id="form" class="p-6">
         <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
             <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
@@ -28,7 +28,7 @@
                         First name <span class="text-red-500">*</span>
                     </label>
                     <div class="mt-2">
-                        <input type="text"
+                        <input wicket:id="firstName" type="text"
                                name="firstName"
                                id="firstName"
                                value=""

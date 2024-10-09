@@ -4,10 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Table("users")
-public class User {
+public class User implements Serializable {
 
     @Id
     private Long id;

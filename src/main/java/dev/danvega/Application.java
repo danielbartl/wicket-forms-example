@@ -1,6 +1,7 @@
 package dev.danvega;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.bean.validation.BeanValidationConfiguration;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WicketFilter;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -22,13 +23,15 @@ public class Application {
 		return new WebApplication() {
 			@Override
 			public Class<? extends Page> getHomePage() {
-				return PersonalInformation.class;
+				return PersonalInformationPage.class;
 			}
 
 			@Override
 			protected void init() {
 
 				super.init();
+
+				new BeanValidationConfiguration().configure(this);
 
 				getCspSettings().blocking().disabled();
 

@@ -2,6 +2,7 @@ package dev.danvega;
 
 import java.util.stream.Stream;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.WebPage;
@@ -25,27 +26,30 @@ public class PersonalInformationPage extends WebPage {
 	private UserRepository repository;
 
 	private Form<User> form;
+	private Model<User> userModel;
 
 	@Override
 	protected void onInitialize() {
 
 		super.onInitialize();
 
-		form();
-		firstName();
-		lastName();
-		email();
-		country();
-		streetAddress();
-		city();
-		region();
-		postalCode();
+		userModel = Model.of(new User());
+		form(
+				firstName(),
+				lastName(),
+				email(),
+				country(),
+				streetAddress(),
+				city(),
+				region(),
+				postalCode()
+		);
 
 	}
 
-	private void form() {
+	private void form(Component... elements) {
 
-		form = new Form<>("form", Model.of(new User())) {
+		form = new Form<>("form", userModel) {
 
 			@Override
 			protected void onSubmit() {
@@ -67,6 +71,8 @@ public class PersonalInformationPage extends WebPage {
 		success();
 		errors();
 		add(form);
+
+		Stream.of(elements).forEach(e -> form.add(e));
 
 	}
 
@@ -106,44 +112,43 @@ public class PersonalInformationPage extends WebPage {
 
 	}
 
-	private void firstName() {
+	private Component firstName() {
 
 		var firstName =
 				new TextField<>(
 						"firstName",
-						new PropertyModel<>(form.getModel(), "firstName"));
+						new PropertyModel<>(userModel, "firstName"));
 		firstName.add(new PropertyValidator<>());
-		form.add(firstName);
+		return firstName;
 
 	}
 
-	private void lastName() {
+	private Component lastName() {
 
 		var lastName =
 				new TextField<>(
 						"lastName",
-						LambdaModel.of(form.getModel(), User::getLastName, User::setLastName));
+						LambdaModel.of(userModel, User::getLastName, User::setLastName));
 		lastName.setRequired(true);
-		form.add(lastName);
+		return lastName;
 
 	}
 
-	private void email() {
+	private Component email() {
 
-		EmailTextField email =
+		return
 				new EmailTextField(
 						"email",
-						LambdaModel.of(form.getModel(), User::getEmail, User::setEmail));
-		form.add(email);
+						LambdaModel.of(userModel, User::getEmail, User::setEmail));
 
 	}
 
-	private void country() {
+	private Component country() {
 
-		var country =
+		return
 				new DropDownChoice<>(
 						"country",
-						LambdaModel.of(form.getModel(), User::getCountry, User::setCountry),
+						LambdaModel.of(userModel, User::getCountry, User::setCountry),
 						Stream.of(
 										"United States",
 										"Canada",
@@ -158,35 +163,33 @@ public class PersonalInformationPage extends WebPage {
 										"Australia")
 								.sorted()
 								.toList());
-		form.add(country);
 
 	}
 
-	private void streetAddress() {
+	private Component streetAddress() {
 
-		var streetAddress =
+		return
 				new TextField<>(
 						"streetAddress",
-						LambdaModel.of(form.getModel(), User::getStreetAddress, User::setStreetAddress));
-		form.add(streetAddress);
+						LambdaModel.of(userModel, User::getStreetAddress, User::setStreetAddress));
 
 	}
 
-	private void city() {
+	private Component city() {
 
-		var city = new TextField<>(
-				"city",
-				LambdaModel.of(form.getModel(), User::getCity, User::setCity));
-		form.add(city);
+		return
+				new TextField<>(
+						"city",
+						LambdaModel.of(userModel, User::getCity, User::setCity));
 
 	}
 
-	private void region() {
+	private Component region() {
 
-		var region =
+		return
 				new DropDownChoice<>(
 						"region",
-						LambdaModel.of(form.getModel(), User::getRegion, User::setRegion),
+						LambdaModel.of(userModel, User::getRegion, User::setRegion),
 						Stream.of(
 										"Alaska",
 										"Texas",
@@ -202,17 +205,15 @@ public class PersonalInformationPage extends WebPage {
 								)
 								.sorted()
 								.toList());
-		form.add(region);
 
 	}
 
-	private void postalCode() {
+	private Component postalCode() {
 
-		var postalCode =
+		return
 				new TextField<>(
 						"postalCode",
-						LambdaModel.of(form.getModel(), User::getPostalCode, User::setPostalCode));
-		form.add(postalCode);
+						LambdaModel.of(userModel, User::getPostalCode, User::setPostalCode));
 
 	}
 }

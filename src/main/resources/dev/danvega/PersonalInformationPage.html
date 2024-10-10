@@ -14,11 +14,11 @@
             <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
             <p class="mt-1 text-sm leading-6 text-gray-500">Fields marked with an asterisk (*) are required.</p>
 
-            <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
+            <div wicket:id="success" class="mt-4 p-4 bg-green-100 text-green-700 rounded">
                 SUCCESS MESSAGE
             </div>
 
-            <div wicket:id="feedback"  class="mt-4 p-4 bg-red-100 text-red-700 rounded">
+            <div wicket:id="errors"  class="mt-4 p-4 bg-red-100 text-red-700 rounded">
                 ERROR MESSAGE
             </div>
 
@@ -59,7 +59,7 @@
                 <div class="sm:col-span-3">
                     <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
                     <div class="mt-2">
-                        <select id="country" name="country" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <select wicket:id="country" id="country" name="country" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select a country</option>
                             <option value="US" selected="">United States</option>
                             <!-- Add more countries as needed -->
@@ -70,21 +70,21 @@
                 <div class="col-span-full">
                     <label for="streetAddress" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
                     <div class="mt-2">
-                        <input type="text" name="streetAddress" id="streetAddress" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input wicket:id="streetAddress" type="text" name="streetAddress" id="streetAddress" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="sm:col-span-2 sm:col-start-1">
                     <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
                     <div class="mt-2">
-                        <input type="text" name="city" id="city" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input wicket:id="city" type="text" name="city" id="city" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="sm:col-span-2">
                     <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
                     <div class="mt-2">
-                        <select id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                        <select wicket:id="region" id="region" name="region" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             <option value="">Select a state</option>
                             <option value="OH" selected="">Ohio</option>
                             <!-- Add more states as needed -->
@@ -95,7 +95,7 @@
                 <div class="sm:col-span-2">
                     <label for="postalCode" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
                     <div class="mt-2">
-                        <input type="text" name="postalCode" id="postalCode" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input wicket:id="postalCode" type="text" name="postalCode" id="postalCode" value="" class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
             </div>

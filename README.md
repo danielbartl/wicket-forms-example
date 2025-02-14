@@ -88,7 +88,7 @@ public class User {
 
 This class uses annotations for database mapping (`@Table`) and validation (`@NotBlank`).
 
-### User Controller
+### PersonalInformationPage
 
 The `PersonalInformationPage` is Wicket's WebPage implementation handling all the functionality
 required by the application in the component-based manner. It uses plain HTML as its template view

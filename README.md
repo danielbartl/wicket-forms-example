@@ -4,9 +4,9 @@ Welcome to the Apache Wicket + Forms project!
 This Spring Boot application showcases the integration of Apache Wicket with form handling, providing a robust
 foundation for building web applications with server-side rendering.
 
-It's based on this project by Dan Vega about Spring Boot and JTE integration, while trying to introduce Apache Wicket
+It's based on [this project](https://github.com/danvega/jte-forms) by [Dan Vega](https://www.danvega.dev/) about Spring Boot and JTE integration, while trying to introduce Apache Wicket
 as another great open-source alternative for building web applications with server-side rendering and Java.
-For more info about Apache Wicket please visit: https://wicket.apache.org/.
+For more info about Apache Wicket please visit: [Apache Wicket homepage](https://wicket.apache.org/).
 
 ## Project Overview
 

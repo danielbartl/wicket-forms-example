@@ -1,4 +1,4 @@
-package dev.danvega;
+package dev.jbaby;
 
 import static org.apache.wicket.feedback.IFeedbackMessageFilter.ALL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,6 +33,7 @@ class PersonalInformationPageTest {
 	void setUp() {
 
 		tester = new WicketTester(application);
+		userRepository.deleteAll();
 
 	}
 
@@ -66,7 +67,7 @@ class PersonalInformationPageTest {
 		var lastName = tester.getComponentFromLastRenderedPage("form:lastName");
 		assertEquals(1, firstName.getFeedbackMessages().size());
 		assertEquals(1, lastName.getFeedbackMessages().size());
-		assertEquals(2, tester.getFeedbackMessages(ALL).size());
+		assertEquals(3, tester.getFeedbackMessages(ALL).size());
 
 		assertEquals(0, userRepository.count());
 

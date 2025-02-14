@@ -1,4 +1,4 @@
-package dev.danvega;
+package dev.jbaby;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;

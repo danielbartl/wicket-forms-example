@@ -1,4 +1,4 @@
-package dev.danvega;
+package dev.jbaby;
 
 import org.springframework.data.repository.ListCrudRepository;
 

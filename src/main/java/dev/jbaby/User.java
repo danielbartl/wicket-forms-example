@@ -1,4 +1,4 @@
-package dev.danvega;
+package dev.jbaby;
 
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;

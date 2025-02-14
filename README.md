@@ -1,11 +1,18 @@
 # JTE + Forms
 
-Welcome to the JTE + Forms project! This Spring Boot application showcases the integration of JTE (Java Template Engine) with form handling, providing a robust foundation for building web applications with server-side rendering.
+Welcome to the Apache Wicket + Forms project!
+This Spring Boot application showcases the integration of Apache Wicket with form handling, providing a robust
+foundation for building web applications with server-side rendering.
+
+It's based on this project by Dan Vega about Spring Boot and JTE integration, while trying to introduce Apache Wicket
+as another great open-source alternative for building web applications with server-side rendering and Java.
+For more info about Apache Wicket please visit: https://wicket.apache.org/.
 
 ## Project Overview
 
 This project demonstrates how to:
-- Set up a Spring Boot application with JTE
+
+- Set up a Spring Boot application with Apache Wicket
 - Handle form submissions
 - Perform data validation
 - Interact with a PostgreSQL database using Spring Data JDBC
@@ -23,11 +30,10 @@ This project relies on the following main dependencies:
 - Spring Boot 3.3.4
 - Spring Web
 - Spring Data JDBC
-- JTE (Java Template Engine) 3.1.12
+-
 - PostgreSQL
 - Spring Boot Docker Compose
 - Spring Boot Validation
-- [Spring Initializr](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.3.4&packaging=jar&jvmVersion=23&groupId=dev.danvega&artifactId=jte-forms&name=jte-forms&description=Spring%20Boot%20%2B%20JTE%20%2B%20Forms&packageName=dev.danvega&dependencies=web,jte,data-jdbc,postgresql,docker-compose,devtools)
 
 ## Getting Started
 
@@ -47,6 +53,7 @@ To get started with this project, follow these steps:
 ```
 
 This command will:
+
 - Download all necessary dependencies
 - Compile the project
 - Start a PostgreSQL container using Docker Compose
@@ -65,16 +72,17 @@ Let's look at some key parts of the application:
 The `User` class represents the data model for user information:
 
 ```java
+
 @Table("users")
 public class User {
-    @Id
-    private Long id;
-    @NotBlank(message = "The First Name field should not be blank.")
-    private String firstName;
-    @NotBlank(message = "The Last Name field should not be blank.")
-    private String lastName;
-    private String email;
-    // ... other fields and methods
+	@Id
+	private Long id;
+	@NotBlank(message = "The First Name field should not be blank.")
+	private String firstName;
+	@NotBlank(message = "The Last Name field should not be blank.")
+	private String lastName;
+	private String email;
+	// ... other fields and methods
 }
 ```
 
@@ -82,51 +90,44 @@ This class uses annotations for database mapping (`@Table`) and validation (`@No
 
 ### User Controller
 
-The `UserController` handles HTTP requests for user operations:
+The `PersonalInformationPage` is Wicket's WebPage implementation handling all the functionality
+required by the application in the component-based manner. It uses plain HTML as its template view
+with all the 'dynamics' handled by Wicket components themselves, thus the functionality can be tested
+relatively easy with plain JUnit tests supported by WicketTester :
 
 ```java
-@Controller
-public class UserController {
-    private final UserRepository repository;
+public class PersonalInformationPage extends WebPage {
+	//... 
+	@Override
+	protected void onInitialize() {
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("user", new User());
-        return "index";
-    }
+		super.onInitialize();
 
-    @PostMapping("/save")
-    public String saveUser(@Valid User user, Model model) {
-        repository.save(user);
-        model.addAttribute("message", "User information saved successfully!");
-        return "index";
-    }
-
-    // ... error handling methods
+		userModel = Model.of(new User());
+		form(
+				firstName(),
+				lastName(),
+				email(),
+				country(),
+				streetAddress(),
+				city(),
+				region(),
+				postalCode()
+		);
+		//... for the rest of the implementation see the source file itself
+	}
 }
 ```
 
-This controller demonstrates how to handle GET and POST requests, perform validation, and interact with the database.
-
-### JTE Template
-
-The main (and only) JTE template for this application is located at `src/main/jte/index.jte`. This template is responsible for rendering the user form and displaying messages.
-
-Here's an overview of what the `index.jte` does:
-
-1. It displays a form for user input, including fields for first name, last name, email, and address information.
-2. The form is set up to submit to the "/save" endpoint using the POST method.
-3. If there's an error message (e.g., validation errors), it's displayed at the top of the form.
-4. If there's a success message (after successful form submission), it's also displayed.
-5. The template uses JTE syntax to handle conditional rendering and to populate form fields with existing user data (if any).
-
-This single template handles both the initial form display and the form redisplay after submission, whether successful or not. It's a great example of how JTE can be used to create dynamic, server-rendered pages in a Spring Boot application.
-
 ## Conclusion
 
-The JTE + Forms project provides a solid starting point for building web applications with Spring Boot and JTE. It showcases form handling, data validation, and database interactions, all while leveraging the power of server-side rendering.
+The Apache Wicket + Forms project provides a solid starting point for building web applications with Spring Boot and
+Apache Wicket.
+It showcases form handling, data validation, and database interactions, all while leveraging the power of server-side
+rendering.
 
-Feel free to explore the code, experiment with the form submission, and extend the application to suit your needs. Pay special attention to the `index.jte` file to see how JTE templates work with Spring Boot. If you have any questions or run into issues, please don't hesitate to open an issue in the repository.
+Feel free to explore the code, experiment with the form submission, and extend the application to suit your needs.
+If you have any questions or run into issues, please don't hesitate to open an issue in the repository.
 
 Happy coding!
 

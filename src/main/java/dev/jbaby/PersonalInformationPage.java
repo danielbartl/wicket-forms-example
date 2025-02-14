@@ -1,4 +1,4 @@
-package dev.danvega;
+package dev.jbaby;
 
 import java.util.stream.Stream;
 
@@ -63,6 +63,7 @@ public class PersonalInformationPage extends WebPage {
 			@Override
 			protected void onError() {
 
+				error("Please fill out all required fields:");
 				LOG.info("User Validation failed for: {}", getModelObject());
 
 			}
@@ -112,6 +113,17 @@ public class PersonalInformationPage extends WebPage {
 
 	}
 
+	/**
+	 * Creates and configures the first name input component for the personal information form.
+	 * <p>
+	 *     Demonstrates the usage of {@link PropertyValidator} that validates User properties based
+	 *     on the annotations in the {@link User} class itself.
+	 * </p>
+	 *
+	 * @return A {@link Component} instance representing the first name form field,
+	 *         typically a {@link TextField} with appropriate validation and model binding
+	 */
+
 	private Component firstName() {
 
 		var firstName =
@@ -122,6 +134,17 @@ public class PersonalInformationPage extends WebPage {
 		return firstName;
 
 	}
+
+	/**
+	 * Creates and configures the last name input component for the personal information form.
+	 * <p>
+	 *     Demonstrates the usage of one of Wicket's own validation approaches. In this case
+	 *     via {@link TextField#setRequired(boolean)}.
+	 * </p>
+	 *
+	 * @return A {@link Component} instance representing the last name form field,
+	 *         typically a {@link TextField} with appropriate validation and model binding
+	 */
 
 	private Component lastName() {
 

@@ -92,7 +92,7 @@ This class uses annotations for database mapping (`@Table`) and validation (`@No
 
 The `PersonalInformationPage` is Wicket's WebPage implementation handling all the functionality
 required by the application in the component-based manner. It uses plain HTML as its template view
-with all the 'dynamics' handled by Wicket components themselves, thus the functionality can be tested
+with all the 'dynamics' handled by Wicket components themselves, thus all the functionality can be tested
 relatively easy with plain JUnit tests supported by WicketTester :
 
 ```java

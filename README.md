@@ -1,4 +1,4 @@
-# JTE + Forms
+# Apache Wicket + Forms
 
 Welcome to the Apache Wicket + Forms project!
 This Spring Boot application showcases the integration of Apache Wicket with form handling, providing a robust
